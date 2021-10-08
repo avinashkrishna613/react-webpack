@@ -1,5 +1,5 @@
 {
-  "compileOnSave": false,
+  "compileOnSave": true,
   "compilerOptions": {
     "module": "es6",
     "allowJs": false, //allow js files to compile
@@ -8,7 +8,10 @@
     "jsx": "react",//emit .js files others are react-native or preserve (.jsx)
     "allowSyntheticDefaultImports": true,
     "noImplicitAny": true,
-    "sourceMap": true //keep the original file as well while debuggng it will be easy
+    "noEmitOnError": true, //ts compiler produces output even if there is error
+    "sourceMap": true, //keep the original file as well while debuggng it will be easy
+    //"outDir": "dist" by default all .js, .js.map files created at the same location but we can change that
+    //"outFile": "dist/bundle", bundle all the things if amd or system
   },
   "include": ["src/**/*", "test/**/*"], //compile these files
   "exclude": ["node_modules"] //exclude these files from compilation

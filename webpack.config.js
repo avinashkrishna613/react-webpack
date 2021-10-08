@@ -1,31 +1,44 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const path = require('path');
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require("path");
 module.exports = {
-    entry: './src/index.tsx',
-    output: {
-        filename: 'bundle.js',
-        path: path.resolve(__dirname, 'dist')
+  entry: "./src/index.tsx",
+  devtool: "inline-source-map",
+  devServer: {
+    port: 3000,
+    static: {
+      directory: path.join(__dirname, 'public'),
     },
-    mode: 'development',
-    resolve: {
-        extensions: ['.tsx', '.ts', '.jsx', '.js']
-    },
-    module: {
-        rules: [
-            // {
-            //     test: '/\(.tsx|.ts)/',
-            //     use: 'ts-loader'
-            // },
-            {
-                test: '/\.(.ts|.tsx|.js|jsx)$/',
-                use: 'babel-loader',
-                exclude: /node_modules/
-            }
-        ]
-    },
-    plugins: [
-        new HtmlWebpackPlugin({
-            filename: path.resolve(__dirname, 'public/index.html')
-        })
-    ]
-}
+    open: true,
+  },
+  output: {
+    filename: "main.js",  
+    path: path.resolve(__dirname, 'dist'),
+  },
+  mode: "development",
+  resolve: {
+    extensions: [".ts", ".tsx", ".jsx", ".js"],
+  },
+  module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        use: [
+          {
+            loader: "ts-loader",
+          },
+        ],
+      },
+      {
+        test: /\.(js|jsx)?$/,
+        use: "babel-loader",
+        exclude: /node_modules/,
+      },
+    ],
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      inject: true,
+      filename: path.resolve(__dirname, "./public/index.html"),
+    }),
+  ],
+};

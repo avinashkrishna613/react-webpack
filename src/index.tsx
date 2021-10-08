@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-function Index(){
+const Index = () => { 
     return (
         <div>
-            Hello world
+            Hello world hello
         </div>
     )
 }
 
 const rootElement = document.getElementById("root")
 ReactDOM.render(<Index />, rootElement);
+export default Index;
